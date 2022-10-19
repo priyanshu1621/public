@@ -52,10 +52,23 @@ var base_data = [
 
 var dummyData = [];
 var theripistData = [];
-for(let i = 0; i < 15; i++) {
-    base_data.forEach(data => dummyData.push(data));
-}
-dummyData = dummyData.map((data,pos) => ({...data, id: pos + 1}));
+$.post({
+    url : '/public/Back-end/therapist.php',
+    type : 'GET',
+    success : function (result) {
+        theripistData = JSON.parse(result);
+        //theripistData = result;
+      console.log (result);
+      //alert("DATA Successfully SENT !");
+    },
+    error : function () {
+      console.log ('error');
+    }
+  });
+// for(let i = 0; i < 15; i++) {
+//     base_data.forEach(data => dummyData.push(data));
+// }
+// dummyData = dummyData.map((data,pos) => ({...data, id: pos + 1}));
 
 
 function lastCardVisible() {
@@ -220,7 +233,9 @@ window.order = {
 
                 if(cards_list_height < cards_container_height) {
                     loadPsychologistData();
+                    theripistData = null;
                 }
+                
             }
             return true;
         }
@@ -313,20 +328,6 @@ async function _fetch(url) {
         case "/psychologists":
             const start_index = parseInt(params["start"]);
             const end_index = start_index + parseInt(params["step"]);
-            $.post({
-                url : '/public/Back-end/therapist.php',
-                type : 'GET',
-                success : function (result) {
-                    theripistData = JSON.parse(result);
-                    //theripistData = result;
-                  console.log (result);
-                  //alert("DATA Successfully SENT !");
-                },
-                error : function () {
-                  console.log ('error');
-                }
-              });
-        
             // response.data = theripistData.slice(start_index, end_index);
             response.data = theripistData;
             response.next = (end_index) >= theripistData.length ? null : (end_index);
