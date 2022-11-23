@@ -279,7 +279,7 @@ async function _fetch(url) {
             const end_index = start_index + parseInt(params["step"]);
             // response.data = theripistData.slice(start_index, end_index);
             response.data = theripistData;
-            // response.next = (end_index) >= theripistData.length ? null : (end_index);
+            response.next = (end_index >= theripistData.length) ? null : (end_index);
             break;
     }
 
