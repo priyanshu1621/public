@@ -1,75 +1,21 @@
-var base_data = [
-    
-    {   
-        // id : "001",
-        name: "Dr. J.N. Tripathi",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBzeWNob2xvZ2lzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-    },
-    {  
-        //  id : "002",
-        name: "Dr. Poonam Joshi ",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
-    },
-    {   
-        // id : "003",
-        name: "Dr. Neeta Singh",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80"
-    },
-    {  
-        //  id : "004",
-        name: "Dr. Archana Mehta",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-    },
-    {   
-        // id : "005",
-        name: "Dr. Lakshay Khurana",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
-    },
-    {  
-        //  id : "006",
-        name: "Dr. Arman Malik",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1568585105565-e372998a195d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-    },
-    {   
-        // id : "007",
-        name: "Dr. Nivedita Datta",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1519975258993-60b42d1c2ee2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-    },
-     {   
-        // id : "008",
-        name: "Dr. Adam Browning",
-        qualification: "M.Sc. Psychology",
-        img: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
-    },
-];
 
 var dummyData = [];
 var theripistData = [];
 $.post({
-    url : '/public/Back-end/therapist.php',
+    url : 'C:/xampp/htdocs/public/Back-end/therapist.php',
+
     type : 'GET',
     success : function (result) {
+        
         theripistData = JSON.parse(result);
         //theripistData = result;
-      console.log (result);
-      //alert("DATA Successfully SENT !");
+      console.log (result)
+   
     },
     error : function () {
       console.log ('error');
     }
   });
-// for(let i = 0; i < 15; i++) {
-//     base_data.forEach(data => dummyData.push(data));
-// }
-// dummyData = dummyData.map((data,pos) => ({...data, id: pos + 1}));
-
 
 function lastCardVisible() {
     const windowBottom = $(window).scrollTop() + $(window).height();
@@ -319,6 +265,9 @@ async function _fetch(url) {
                 success : function (result) {
                   console.log ('success');
                   alert("DATA Successfully SENT !");
+                  location.reload();
+                  document.location.reload();
+
                 },
                 error : function () {
                   console.log ('error');
@@ -330,7 +279,7 @@ async function _fetch(url) {
             const end_index = start_index + parseInt(params["step"]);
             // response.data = theripistData.slice(start_index, end_index);
             response.data = theripistData;
-            response.next = (end_index) >= theripistData.length ? null : (end_index);
+            // response.next = (end_index) >= theripistData.length ? null : (end_index);
             break;
     }
 
